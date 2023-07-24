@@ -16,8 +16,14 @@ import {
 import { message, Space, Tabs } from 'antd';
 import type { CSSProperties } from 'react';
 import { useState } from 'react';
-
-
+import { handleLogin } from '../services/handleLogin';
+import { BrowserRouter as Router, 
+  Routes, 
+  Route, 
+  Link,  
+  useNavigate,
+  Navigate
+} from 'react-router-dom';
   
   type LoginType = 'phone' | 'account';
   
@@ -34,13 +40,42 @@ import { useState } from 'react';
   
   export default () => {
     const [loginType, setLoginType] = useState<LoginType>('phone');
+    const navigate = useNavigate();
+    function handleLogin2(values){
+    
+      if(values.mobile === '17878787878' && values.captcha === '123') {
+          message.success('登录成功！');
+      // 处理登录逻辑，例如发送登录请求
+      console.log('测试成功' );
+      
+      navigate('/home');
+      return true;
+      // console.log('登录表单数据:', values);
+      // 跳转到登录逻辑
+      // ...
+      }
+          
+  
+      return new Promise((resolve, reject) => {
+          // 处理登录逻辑，例如发送登录请求
+          // console.log('登录表单数据:', values);
+          // 模拟登录成功
+  
+          resolve(true);
+          // 模拟登录失败
+          // reject(false);
+      });
+  
+  };
+
+
 
 
     return (
       <ProConfigProvider hashed={false}>
         <div style={{ backgroundColor: 'white' }}>
           <LoginForm
-            
+            onFinish={handleLogin2}
             logo="https://github.githubassets.com/images/modules/logos_page/Octocat.png"
             title="Hello"
             subTitle="github"
