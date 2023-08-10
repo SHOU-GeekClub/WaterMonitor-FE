@@ -2,6 +2,7 @@
 import React, {useState} from 'react';
 import Login from './components/Login';
 import Home from './pages/home';
+import Regist from './pages/regist';
 import {
     BrowserRouter as Router,
     Routes,
@@ -20,6 +21,7 @@ function App() {
                 <Routes>
                     <Route exact path='/' element={<Login/>}></Route>
                     <Route path='/home' element={<Home/>}></Route>
+                    <Route path='/regist' element={<Regist/>}></Route>
                 </Routes>
             </Router>
         </div>

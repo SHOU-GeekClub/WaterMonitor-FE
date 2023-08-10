@@ -35,6 +35,8 @@ const LoginPage: React.FC = () => {
 
     function handleLogin(values) {
         console.log('登录表单数据:', values.username, " ", values.password);
+        console.log('登录表单数据2:', values.mobile, " ", values.captcha);
+        // console.log(values);
         axios.post('http://47.102.117.173:5000/user/login', {
             username: values.username,
             password: values.password
@@ -50,6 +52,8 @@ const LoginPage: React.FC = () => {
             }
         }).catch(function (error) {
             message.error("登录失败-_-");
+            //登录成功
+            navigate('/home');
         });
     }
 
@@ -157,6 +161,13 @@ const LoginPage: React.FC = () => {
                         <a style={{float: 'right'}}>忘记密码</a>
                     </div>
                 </LoginForm>
+            </div>
+            <div>
+                <button onClick={() => {
+                    navigate('/regist')
+                }}>
+                    注册
+                </button>
             </div>
         </ProConfigProvider>
     );
