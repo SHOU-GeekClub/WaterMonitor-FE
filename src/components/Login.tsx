@@ -52,7 +52,9 @@ const LoginPage: React.FC = () => {
             }
         }).catch(function (error) {
             message.error("登录失败-_-");
+            console.log(error);
             //登录成功
+            
             navigate('/home');
         });
     }
