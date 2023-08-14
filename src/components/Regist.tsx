@@ -1,11 +1,8 @@
 
-import axios from 'axios';
-import { Form, Input, Button } from "antd";
-import {message} from 'antd';
+import { Form, Input, Button, Radio } from "antd";
 import {useNavigate} from 'react-router-dom';
 
 const RegistrationForm = () => {
-    const navigate = useNavigate();
 
     //提交表单
   const onFinish = (values) => {
@@ -15,24 +12,21 @@ const RegistrationForm = () => {
         password: values.password,
         cPassword: values.confirmPassword,
         nname: values.nname,
-        ggender: 1,
+        ggender: values.gender,
         role: 1
       };
     console.log(data);
     
-    axios.post('http://47.102.117.173:5000/user/register', data
-        ).then(function (response) {
-            message.success("注册成功^_^，跳转登录页");
-            console.log(response);
-            navigate('/');
-        }).catch(function (error) {
-            message.error("注册失败-_-");
-            console.log(error);
+    // axios.post('http://47.102.117.173:5000/user/register', data
+    //     ).then(function (response) {
+    //         message.success("注册成功^_^，跳转登录页");
+    //         console.log(response);
+    //         navigate('/');
+    //     }).catch(function (error) {
+    //         message.error("注册失败-_-");
+    //         console.log(error);
 
-        });
-      
-
-
+    //     });
   };
 
   //获取验证码
@@ -80,6 +74,18 @@ const RegistrationForm = () => {
       >
         <Input style={{ width: 300 }} />
       </Form.Item>
+
+      <Form.Item
+        label="性别"
+        name="gender"
+        rules={[{ required: true, message: "请选择性别" }]}
+        >
+        <Radio.Group>
+            <Radio value={1}>男</Radio>
+            <Radio value={2}>女</Radio>
+        </Radio.Group>
+      </Form.Item>
+
 
       <Form.Item
         label="密码"
