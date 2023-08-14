@@ -13,15 +13,15 @@ import {
 } from 'react-router-dom';
 
 function App() {
-    const [count, setCount] = useState(0);
+
 
     return (
         <div>
             <Router>
                 <Routes>
-                    <Route exact path='/' element={<Login/>}></Route>
-                    <Route path='/home/*' element={<Home/>}></Route>
-                    <Route path='/regist' element={<Regist/>}></Route>
+                    <Route exact path='/' element={<Login/>} />
+                    <Route path='/home/*' element={<Home/>} />
+                    <Route path='/regist' element={<Regist/>} />
                 </Routes>
             </Router>
         </div>

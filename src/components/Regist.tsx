@@ -1,12 +1,15 @@
 
 import { Form, Input, Button, Radio } from "antd";
 import {useNavigate} from 'react-router-dom';
+import axios from "axios";
+import { message } from "antd";
 
 const RegistrationForm = () => {
 
     //提交表单
   const onFinish = (values) => {
     console.log("Received values of form: ", values);
+    const navigate = useNavigate();
     const data = {
         username: values.username,
         password: values.password,
@@ -17,16 +20,16 @@ const RegistrationForm = () => {
       };
     console.log(data);
     
-    // axios.post('http://47.102.117.173:5000/user/register', data
-    //     ).then(function (response) {
-    //         message.success("注册成功^_^，跳转登录页");
-    //         console.log(response);
-    //         navigate('/');
-    //     }).catch(function (error) {
-    //         message.error("注册失败-_-");
-    //         console.log(error);
+    axios.post('http://47.102.117.173:5000/user/register', data
+        ).then(function (response) {
+            message.success("注册成功^_^，跳转登录页");
+            console.log(response);
+            navigate('/');
+        }).catch(function (error) {
+            message.error("注册失败-_-");
+            console.log(error);
 
-    //     });
+        });
   };
 
   //获取验证码

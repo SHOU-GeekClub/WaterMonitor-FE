@@ -47,8 +47,9 @@ const LoginPage: React.FC = () => {
                 alert("浏览器不支持localstorage");
             }else{
                 var storage=window.localStorage;
-                console.log(JSON.stringify(response.data));
-                storage.setItem("body",JSON.stringify(response.data));
+                // console.log(JSON.stringify(response.data));
+                // storage.setItem("body",JSON.stringify(response.data));
+                storage.setItem("body",response.data.body);
             }
         }).catch(function (error) {
             message.error("登录失败-_-");

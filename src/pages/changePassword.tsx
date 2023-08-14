@@ -1,17 +1,34 @@
 
-import { Form, Input, Button } from "antd";
-
-
+import { Form, Input, Button, message } from "antd";
+import axios from "axios";
 
 export default function ChangePassword(){
 
     const onFinish = (values) => {
         console.log("Received values of form: ", values);
+        var storage=window.localStorage;
+        const headers = {
+          'Application-Token': storage.getItem("body"),
+          'Content-Type': 'application/json',
+        };
+
         const data = {
-            password: values.password,
-            cPassword: values.confirmPassword,
+            oldPassword: values.oldPassword,
+            newPassword: values.newPassword,
+            newPasswordAgain: values.newPasswordAgain,
           };
-        console.log(data);
+        console.log(data,headers);
+
+        //发送请求
+        axios.post('http://47.102.117.173:5000/user/UserChangePassword',data,{headers})
+        .then(response => {
+          console.log(response.data);
+          message.success("修改密码成功");
+        })
+        .catch(error => {
+          console.error(error);
+          console.log(error);
+        });
 
       };
 
@@ -24,6 +41,15 @@ export default function ChangePassword(){
       >
 
       <Form.Item
+        label="原密码"
+        name="oldPassword"
+        dependencies={["password"]}
+        rules={[ { required: true, message: "请输入原密码" } ]}
+      >
+        <Input.Password style={{ width: 300 }} />
+      </Form.Item>
+
+      <Form.Item
         label="新密码"
         name="newPassword"
         dependencies={["password"]}
@@ -34,7 +60,7 @@ export default function ChangePassword(){
 
       <Form.Item
         label="确认新密码"
-        name="confirmNewPassword"
+        name="newPasswordAgain"
         dependencies={["password"]}
         rules={[
           { required: true, message: "请再次输入新密码" },
