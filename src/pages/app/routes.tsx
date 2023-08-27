@@ -21,7 +21,12 @@ const route = {
             },
             {
               path: "/app/user/search",
-              name: "搜索用户",
+              name: "用户管理",
+              icon: <CrownFilled />,
+            },
+            {
+              path: "/app/user/create",
+              name: "创建用户",
               icon: <CrownFilled />,
             },
           ],
@@ -32,8 +37,8 @@ const route = {
           icon: <CrownFilled />,
           routes: [
             {
-              path: "/app/sensor/search",
-              name: "传感器查询",
+              path: "/app/sensor/create",
+              name: "新建传感器",
               icon: <CrownFilled />,
             },
           ],
