@@ -1,31 +1,34 @@
-//@ts-nocheck
-import React, {useState} from 'react';
-import Login from './components/Login';
-import Home from './pages/home';
-import Regist from './pages/regist';
+import React, { useState } from "react";
+import reactLogo from "./assets/react.svg";
+import "./App.css";
+import "./styles/app.less";
 import {
-    BrowserRouter as Router,
-    Routes,
-    Route,
-    Link,
-    useNavigate,
-    Navigate
-} from 'react-router-dom';
+  BrowserRouter,
+  HashRouter,
+  Navigate,
+  Route,
+  Routes,
+} from "react-router-dom";
+import { ConfigProvider, message, theme } from "antd";
+import { LayoutPage } from "./pages/app/Layout";
+import { UserLoginPage } from "./pages/app/user/login";
 
 function App() {
-
-
-    return (
-        <div>
-            <Router>
-                <Routes>
-                    <Route exact path='/' element={<Login/>} />
-                    <Route path='/home/*' element={<Home/>} />
-                    <Route path='/regist' element={<Regist/>} />
-                </Routes>
-            </Router>
-        </div>
-    );
+  return (
+    <ConfigProvider
+      theme={{
+        algorithm: theme.defaultAlgorithm,
+      }}
+    >
+      <BrowserRouter>
+        <Routes>
+          <Route path={"/login"} element={<UserLoginPage />} />
+          <Route path={"/"} element={<Navigate to={"/app"} />} />
+          <Route index path={"/*"} element={<LayoutPage />} />
+        </Routes>
+      </BrowserRouter>
+    </ConfigProvider>
+  );
 }
 
 export default App;
