@@ -50,7 +50,7 @@ const UserChangePasswordPage: React.FC = () => {
                         label="新密码"
                         rules={[
                             {required: true, message: '请输入新密码'},
-                            {min: 6, message: '新密码长度不能少于6个字符'},
+                            {min: 1, message: '新密码长度不能少于1个字符'},
                         ]}
                     />
 

@@ -13,6 +13,7 @@ import UserChangePasswordPage from "./user/changePassword";
 import {UserSearchPage} from "./user/search";
 import {UserApi} from "../../Api/UserApi";
 import {notification} from "antd";
+import UserRegister from "./user/UserRegister";
 
 export function LayoutPage() {
     const navigate = useNavigate();
@@ -109,6 +110,7 @@ export function LayoutPage() {
                             element={<UserChangePasswordPage/>}
                         />
                         <Route path={"/app/user/search"} element={<UserSearchPage/>}/>
+                        <Route path={"/app/user/create"} element={<UserRegister/>}/>
                     </Routes>
                 </ProLayout>
             </div>

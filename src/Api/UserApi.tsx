@@ -45,5 +45,18 @@ export class UserApi {
         );
         return response.data;
     }
+
+    static async handleRegister(data:any) {
+        const response: AxiosResponse<Token> = await axios.post(
+            `${Config.basePath}/user/register`,
+            data,
+            {
+                headers: {
+                    "Application-Token": localStorage.getItem("token"),
+                },
+            }
+        );
+        return response.data;
+    }
 }
 
