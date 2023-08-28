@@ -1,3 +1,4 @@
+
 export enum Gender {
   男 = 1,
   女 = 2,
@@ -19,3 +20,5 @@ export interface User {
   userRole: UserRole;
   state: boolean;
 }
+
+
